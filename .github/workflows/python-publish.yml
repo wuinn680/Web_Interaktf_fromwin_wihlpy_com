@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web Interaktif - fromwin.withlpy.com</title>
+    <style>
+        body {
+            background-color: #111;
+            color: #f9f9f9;
+            font-family: "Poppins", sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            text-align: center;
+            flex-direction: column;
+            padding: 20px;
+        }
+        #text {
+            font-size: 1.4rem;
+            line-height: 1.6;
+            max-width: 600px;
+            white-space: pre-line;
+        }
+        .cursor {
+            display: inline-block;
+            width: 8px;
+            background-color: #f9f9f9;
+            margin-left: 5px;
+            animation: blink 0.8s infinite;
+        }
+        @keyframes blink {
+            0%, 50% { opacity: 1; }
+            51%, 100% { opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+    <div id="text"></div>
+    <div class="cursor"></div>
+
+    <script>
+        const messages = [
+            "hai, lama tak berkabar.",
+            "bagaimana kabarmu?",
+            "Tuhan selalu memberkati mu.",
+            "selamat ulang tahun ya, untuk bulan lalu yg sudah lama terlewat.",
+            "aku sempat ingin memberi kado, bahkan sudah menyiapkan. hanya saja tidak tersampaikan.",
+            "tapi, terlepas dari itu. ekspektasi ku adalah kamu bahagia sekarang.",
+            "kamu sudah menemukan orang yg tepat untuk bersandar.",
+            "kamu harus bahagia, senyummu selalu membuat orang tenang. aku saja suka lihat senyummu, bikin semangat.",
+            "jangan bingung mau balas apa, ya. aku cuma mau menyapa dengan teknik sederhana ku. tidak butuh balasan.",
+            "bahagia selalu, cantik. kebahagiaan selalu menyertai mu. maaf kalau pernah menjerumuskan kamu dalam masalah dan kesedihan.",
+            "ribuan kata maafku akan panjang kalau dimasukan. ini terakhir, sungguh pesan terakhir ku.",
+            "aku janji setelah ini, dan selamanya aku nggak akan ganggu kamu dalam kerinduan.",
+            "oke, selamat tidur ya. jangan tidur malam malam."
+        ];
+
+        let textElement = document.getElementById("text");
+        let i = 0;
+
+        function showMessage() {
+            if (i < messages.length) {
+                let message = messages[i];
+                let j = 0;
+                let interval = setInterval(() => {
+                    textElement.textContent += message[j];
+                    j++;
+                    if (j === message.length) {
+                        clearInterval(interval);
+                        textElement.innerHTML += "\n\n";
+                        i++;
+                        setTimeout(showMessage, 1200);
+                    }
+                }, 50);
+            }
+        }
+
+        showMessage();
+    </script>
+</body>
+</html>
